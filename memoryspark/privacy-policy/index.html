@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Memory Spark</title>
+<meta name="description" content="Privacy Policy for Memory Spark by Hasan Burak Dümer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --card: #16213e;
+    --violet: #8B5CF6;
+    --text: #eaeaea;
+    --dim: #8899aa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(139,92,246,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 70%, rgba(83,216,168,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--violet);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: rgba(139,92,246,0.08);
+    transition: background 0.15s;
+  }
+  .back:hover { background: rgba(139,92,246,0.18); }
+  .header {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease-out;
+  }
+  .header .icon { font-size: 2rem; margin-bottom: 12px; }
+  .header h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .header p {
+    color: var(--dim);
+    font-size: 0.9rem;
+  }
+  .content {
+    animation: fadeUp 0.6s ease-out 0.1s both;
+  }
+  .content h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--violet);
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+  .content p, .content li {
+    color: var(--dim);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .content ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .content li { margin-bottom: 6px; }
+  .content a {
+    color: var(--violet);
+    text-decoration: none;
+  }
+  .content a:hover { text-decoration: underline; }
+  .footer {
+    text-align: center;
+    margin-top: 64px;
+    color: var(--dim);
+    font-size: 0.8rem;
+  }
+  .footer a { color: var(--dim); text-decoration: none; }
+  .footer a:hover { color: var(--violet); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 540px) {
+    .container { padding: 40px 16px 60px; }
+    .header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/" class="back">← Back to Apps</a>
+
+  <div class="header">
+    <div class="icon">✦</div>
+    <h1>Privacy Policy</h1>
+    <p>Memory Spark · Last updated: March 6, 2026</p>
+  </div>
+
+  <div class="content">
+    <h2>Overview</h2>
+    <p>Memory Spark ("we", "our", or "the app") is developed by Hasan Burak Dümer. We take your privacy seriously. This policy explains what data we collect, how we use it, and your rights.</p>
+
+    <h2>Photos & Photo Library</h2>
+    <p>Memory Spark accesses your photo library to find photos containing people and generate artistic images from them. Here is how this works:</p>
+    <ul>
+      <li><strong>On-device processing only.</strong> Face detection and photo scanning happen entirely on your device using Apple's Vision framework and Google ML Kit. Your photos are never uploaded to our servers.</li>
+      <li><strong>Text descriptions only.</strong> When generating art, we send short text descriptions of your photos (scene, mood, setting — never faces or identifiable features) to our AI provider (OpenAI) to create an image prompt. The actual photos never leave your device.</li>
+      <li><strong>No photo storage.</strong> We do not store, copy, or transmit your original photos anywhere.</li>
+    </ul>
+
+    <h2>AI-Generated Images</h2>
+    <p>Generated artwork is stored locally on your device within the app's sandbox. If you choose to save or share an image, it is written to your photo library or shared via the standard system share sheet. We do not have access to your generated images.</p>
+
+    <h2>Account & Personal Information</h2>
+    <p>Memory Spark does not require account creation. We do not collect your name, email address, phone number, or any other personal information unless you voluntarily contact us for support.</p>
+
+    <h2>Subscriptions & Purchases</h2>
+    <p>In-app purchases and subscriptions are processed by Apple (App Store) and Google (Google Play) through RevenueCat. We do not have access to your payment information, credit card details, or billing address. RevenueCat receives an anonymous user identifier to manage your subscription status. For more information, see <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat's Privacy Policy</a>.</p>
+
+    <h2>Analytics</h2>
+    <p>We use Firebase Analytics to understand how the app is used (e.g., which features are popular, crash reports). This data is aggregated and anonymous. It may include:</p>
+    <ul>
+      <li>Device type and operating system version</li>
+      <li>App usage events (e.g., "generation started", "style selected")</li>
+      <li>Crash logs and performance data</li>
+    </ul>
+    <p>We do not track your location, browsing history, or any personally identifiable information through analytics. For more information, see <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Information</a>.</p>
+
+    <h2>Advertising</h2>
+    <p>Free users may see ads served by Google AdMob. AdMob may use your device's advertising identifier to show relevant ads. You can opt out of personalized ads in your device settings (iOS: Settings → Privacy → Apple Advertising; Android: Settings → Google → Ads). For more information, see <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</p>
+    <p>Pro subscribers do not see any ads.</p>
+
+    <h2>Push Notifications</h2>
+    <p>If you enable notifications, we send local reminders to create your daily Memory Spark. These notifications are scheduled on your device and do not transmit data to any server. You can disable notifications at any time in your device settings.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>Memory Spark uses the following third-party services:</p>
+    <ul>
+      <li><strong>OpenAI</strong> — for generating text descriptions and AI art. Only text prompts are sent, never photos. <a href="https://openai.com/privacy" target="_blank">OpenAI Privacy Policy</a></li>
+      <li><strong>RevenueCat</strong> — for managing subscriptions. <a href="https://www.revenuecat.com/privacy" target="_blank">RevenueCat Privacy Policy</a></li>
+      <li><strong>Firebase (Google)</strong> — for analytics and crash reporting. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy</a></li>
+      <li><strong>Google AdMob</strong> — for displaying ads to free users. <a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></li>
+    </ul>
+
+    <h2>Data Retention</h2>
+    <p>All generated images and app data are stored locally on your device. You can delete all data at any time from the app's Settings screen ("Delete All Data"). Uninstalling the app removes all local data.</p>
+
+    <h2>Children's Privacy</h2>
+    <p>Memory Spark is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us and we will delete it.</p>
+
+    <h2>Your Rights</h2>
+    <p>Since we do not collect personal data, there is generally no personal information to access, correct, or delete. If you have questions about your data, you can contact us at any time.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated "Last updated" date. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
+
+    <h2>Contact</h2>
+    <p>If you have any questions about this privacy policy, please contact us at:<br>
+    <a href="mailto:burakdumer22@hotmail.com">burakdumer22@hotmail.com</a></p>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Hasan Burak Dümer · <a href="/">Back to Apps</a></p>
+  </div>
+</div>
+
+</body>
+</html>

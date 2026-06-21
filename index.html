@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Burak Dümer — iOS & Mobile Apps</title>
+<meta name="description" content="Mobile apps by Hasan Burak Dümer. Blastic Bubbles — Ottoman puzzle game. Memory Spark — AI memory art. Fitography — AI fitness coach. CardMoji — emoji memory game. MindCleaner — photo cleanup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --surface: #1a1a2e;
+    --card: #16213e;
+    --accent: #e94560;
+    --gold: #f5c518;
+    --mint: #53d8a8;
+    --purple: #9b59b6;
+    --blue: #4cc9f0;
+    --orange: #F26522;
+    --violet: #8B5CF6;
+    --ottoman-red: #C0392B;
+    --ottoman-gold: #F5A623;
+    --text: #eaeaea;
+    --dim: #8899aa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 25% 30%, rgba(233,69,96,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 75% 60%, rgba(83,216,168,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(155,89,182,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 64px;
+    animation: fadeUp 0.6s ease-out;
+  }
+
+  .header h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    color: var(--dim);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .apps {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .app-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px;
+    padding: 36px 32px;
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    animation: fadeUp 0.6s ease-out both;
+    position: relative;
+  }
+
+  .app-card:nth-child(1) { animation-delay: 0.1s; }
+  .app-card:nth-child(2) { animation-delay: 0.2s; }
+  .app-card:nth-child(3) { animation-delay: 0.3s; }
+  .app-card:nth-child(4) { animation-delay: 0.4s; }
+  .app-card:nth-child(5) { animation-delay: 0.5s; }
+
+  .app-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .app-icon {
+    width: 88px;
+    height: 88px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  }
+
+  .app-icon.blasticbubbles {
+    background: linear-gradient(145deg, #2a1508, #1a0a04);
+    border: 2px solid rgba(245,166,35,0.3);
+  }
+
+  .app-icon.memoryspark {
+    background: linear-gradient(145deg, #1a0a20, #16102e);
+    border: 2px solid rgba(139,92,246,0.3);
+  }
+
+  .app-icon.fitography {
+    background: linear-gradient(145deg, #1a1008, #2a1a0a);
+    border: 2px solid rgba(242,101,34,0.3);
+  }
+
+  .app-icon.cardmoji {
+    background: linear-gradient(145deg, #1a1a2e, #0f3460);
+    border: 2px solid rgba(83,216,168,0.3);
+  }
+
+  .app-icon.mindcleaner {
+    background: linear-gradient(145deg, #1a3a5c, #0d253f);
+    border: 2px solid rgba(76,201,240,0.3);
+  }
+
+  .app-info { flex: 1; min-width: 0; }
+
+  .app-name {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .app-tagline {
+    color: var(--dim);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+
+  .app-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .app-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  /* Blastic Bubbles links */
+  .blasticbubbles-links .app-link {
+    color: var(--ottoman-gold);
+    background: rgba(245,166,35,0.08);
+  }
+  .blasticbubbles-links .app-link:hover {
+    background: rgba(245,166,35,0.18);
+    color: #ffd060;
+  }
+  .blasticbubbles-links .app-link.primary {
+    background: rgba(245,166,35,0.15);
+    color: var(--ottoman-gold);
+  }
+  .blasticbubbles-links .app-link.primary:hover {
+    background: rgba(245,166,35,0.28);
+  }
+
+  /* Memory Spark links */
+  .memoryspark-links .app-link {
+    color: var(--violet);
+    background: rgba(139,92,246,0.08);
+  }
+  .memoryspark-links .app-link:hover {
+    background: rgba(139,92,246,0.18);
+    color: #a78bfa;
+  }
+  .memoryspark-links .app-link.primary {
+    background: rgba(139,92,246,0.15);
+    color: var(--violet);
+  }
+  .memoryspark-links .app-link.primary:hover {
+    background: rgba(139,92,246,0.28);
+  }
+
+  /* Fitography links */
+  .fitography-links .app-link {
+    color: var(--orange);
+    background: rgba(242,101,34,0.08);
+  }
+  .fitography-links .app-link:hover {
+    background: rgba(242,101,34,0.18);
+    color: #ff8a50;
+  }
+  .fitography-links .app-link.primary {
+    background: rgba(242,101,34,0.15);
+    color: var(--orange);
+  }
+  .fitography-links .app-link.primary:hover {
+    background: rgba(242,101,34,0.28);
+  }
+
+  /* CardMoji links */
+  .cardmoji-links .app-link {
+    color: var(--mint);
+    background: rgba(83,216,168,0.08);
+  }
+  .cardmoji-links .app-link:hover {
+    background: rgba(83,216,168,0.18);
+    color: var(--gold);
+  }
+  .cardmoji-links .app-link.primary {
+    background: rgba(233,69,96,0.15);
+    color: var(--accent);
+  }
+  .cardmoji-links .app-link.primary:hover {
+    background: rgba(233,69,96,0.28);
+  }
+
+  /* MindCleaner links */
+  .mindcleaner-links .app-link {
+    color: var(--blue);
+    background: rgba(76,201,240,0.08);
+  }
+  .mindcleaner-links .app-link:hover {
+    background: rgba(76,201,240,0.18);
+    color: #7dd3fc;
+  }
+  .mindcleaner-links .app-link.primary {
+    background: rgba(76,201,240,0.15);
+    color: var(--blue);
+  }
+  .mindcleaner-links .app-link.primary:hover {
+    background: rgba(76,201,240,0.28);
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-left: 8px;
+    position: relative;
+    top: -2px;
+  }
+
+  .badge.new {
+    background: rgba(245,166,35,0.2);
+    color: var(--ottoman-gold);
+  }
+
+  .badge.coming {
+    background: rgba(192,57,43,0.2);
+    color: var(--ottoman-red);
+  }
+
+  .arrow {
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+  .app-link:hover .arrow {
+    transform: translateX(2px);
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 72px;
+    color: var(--dim);
+    font-size: 0.8rem;
+    animation: fadeUp 0.6s ease-out 0.7s both;
+  }
+
+  .footer a {
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer a:hover { color: var(--mint); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 540px) {
+    .app-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 28px 24px;
+      gap: 16px;
+    }
+    .app-icon { margin: 0 auto; }
+    .app-links { justify-content: center; }
+    .header h1 { font-size: 1.8rem; }
+    .container { padding: 40px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>Burak Dümer</h1>
+    <p>iOS & Mobile Apps</p>
+  </div>
+
+  <div class="apps">
+    <!-- Blastic Bubbles -->
+    <div class="app-card">
+      <div class="app-icon blasticbubbles">🫧</div>
+      <div class="app-info">
+        <div class="app-name">Blastic Bubbles <span class="badge new">New</span></div>
+        <div class="app-tagline">Pop bubbles, unwrap hidden items, and renovate Baba's dream house in this Ottoman-themed puzzle adventure set in the Grand Bazaar.</div>
+        <div class="app-links blasticbubbles-links">
+          <a href="/blasticbubbles/" class="app-link primary">Learn More <span class="arrow">→</span></a>
+          <a href="https://apps.apple.com/app/blastic-bubbles/idYOUR_APP_ID" target="_blank" class="app-link">App Store ↗</a>
+          <a href="/blasticbubbles/privacy-policy/" class="app-link">Privacy</a>
+          <a href="/blasticbubbles/terms-of-use/" class="app-link">Terms</a>
+          <a href="/blasticbubbles/support/" class="app-link">Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Memory Spark -->
+    <div class="app-card">
+      <div class="app-icon memoryspark">✦</div>
+      <div class="app-info">
+        <div class="app-name">Memory Spark</div>
+        <div class="app-tagline">Your memories, reimagined as art. AI picks 10 random photos with people from your library and creates a beautiful artistic image blending all those moments into one.</div>
+        <div class="app-links memoryspark-links">
+          <a href="/memoryspark/" class="app-link primary">Learn More <span class="arrow">→</span></a>
+          <a href="https://apps.apple.com/app/memory-spark/idYOUR_APP_ID" target="_blank" class="app-link">App Store ↗</a>
+          <a href="/memoryspark/privacy-policy/" class="app-link">Privacy</a>
+          <a href="/memoryspark/terms-of-use/" class="app-link">Terms</a>
+          <a href="/memoryspark/support/" class="app-link">Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fitography -->
+    <div class="app-card">
+      <div class="app-icon fitography">🏋️</div>
+      <div class="app-info">
+        <div class="app-name">Fitography</div>
+        <div class="app-tagline">Your AI fitness coach. Personalized workout plans that adapt every 2 weeks based on your actual progress. Built for beginners.</div>
+        <div class="app-links fitography-links">
+          <a href="/fitography/" class="app-link primary">Learn More <span class="arrow">→</span></a>
+          <a href="https://apps.apple.com/app/fitography/idYOUR_APP_ID" target="_blank" class="app-link">App Store ↗</a>
+          <a href="/fitography/privacy-policy/" class="app-link">Privacy</a>
+          <a href="/fitography/support/" class="app-link">Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CardMoji -->
+    <div class="app-card">
+      <div class="app-icon cardmoji">🧠</div>
+      <div class="app-info">
+        <div class="app-name">CardMoji</div>
+        <div class="app-tagline">Flip cards, find emoji pairs, and race the clock across 8 brain-teasing levels. How fast is your memory?</div>
+        <div class="app-links cardmoji-links">
+          <a href="/cardmoji/" class="app-link primary">Learn More <span class="arrow">→</span></a>
+          <a href="https://apps.apple.com/app/cardmoji/idYOUR_APP_ID" target="_blank" class="app-link">App Store ↗</a>
+          <a href="/cardmoji/privacy-policy/" class="app-link">Privacy</a>
+          <a href="/cardmoji/support/" class="app-link">Support</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MindCleaner -->
+    <div class="app-card">
+      <div class="app-icon mindcleaner">🧹</div>
+      <div class="app-info">
+        <div class="app-name">MindCleaner</div>
+        <div class="app-tagline">Find and remove duplicate and similar photos & videos. All processing happens on your device — private, fast, and free.</div>
+        <div class="app-links mindcleaner-links">
+          <a href="/mindcleaner/" class="app-link primary">Learn More <span class="arrow">→</span></a>
+          <a href="https://apps.apple.com/us/app/mind-cleaner-photo-cleanup/id6747714465" target="_blank" class="app-link">App Store ↗</a>
+          <a href="/mindcleaner/privacy-policy/" class="app-link">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Hasan Burak Dümer · <a href="mailto:burakdumer22@hotmail.com">Contact</a></p>
+  </div>
+</div>
+
+</body>
+</html>

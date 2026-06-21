@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blastic Bubbles: The Grand Bazaar — Pop, Unwrap & Renovate</title>
+<meta name="description" content="Blastic Bubbles: The Grand Bazaar — a bubble-popping puzzle adventure set in an Ottoman Grand Bazaar. Pop colored bubbles, unwrap hidden items, and renovate Baba's dream house. Free on iOS and Android.">
+<meta property="og:title" content="Blastic Bubbles: The Grand Bazaar">
+<meta property="og:description" content="Pop bubbles, unwrap hidden treasures, and help Baba renovate his dream house in this Ottoman-themed puzzle adventure.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burakdumer.com/blasticbubbles/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0a06;
+    --surface: #1a1008;
+    --card: #1e1510;
+    --ottoman-red: #C0392B;
+    --ottoman-gold: #F5A623;
+    --ottoman-cream: #F5E6C8;
+    --ottoman-brown: #5D4037;
+    --green: #4CAF50;
+    --text: #eaeaea;
+    --dim: #a0917a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(245,166,35,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 70%, rgba(192,57,43,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(93,64,55,0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Back link */
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 48px;
+    transition: color 0.15s;
+    animation: fadeUp 0.4s ease-out;
+  }
+  .back:hover { color: var(--ottoman-gold); }
+  .back span { transition: transform 0.15s; }
+  .back:hover span { transform: translateX(-3px); }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease-out 0.1s both;
+  }
+
+  .hero-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 28px;
+    background: linear-gradient(145deg, #2a1508, #1a0a04);
+    border: 2px solid rgba(245,166,35,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.2rem;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 60px rgba(245,166,35,0.08);
+  }
+
+  .hero h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--ottoman-gold), #FFD700, var(--ottoman-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .hero .subtitle {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ottoman-cream);
+    opacity: 0.6;
+    margin-bottom: 16px;
+  }
+
+  .hero .tagline {
+    color: var(--dim);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 0 auto 28px;
+  }
+
+  /* Store buttons */
+  .store-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .store-btn.ios {
+    background: rgba(245,166,35,0.12);
+    color: var(--ottoman-gold);
+    border: 1px solid rgba(245,166,35,0.2);
+  }
+  .store-btn.ios:hover {
+    background: rgba(245,166,35,0.22);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245,166,35,0.15);
+  }
+
+  .store-btn.android {
+    background: rgba(76,175,80,0.1);
+    color: var(--green);
+    border: 1px solid rgba(76,175,80,0.2);
+  }
+  .store-btn.android:hover {
+    background: rgba(76,175,80,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76,175,80,0.12);
+  }
+
+  .store-btn .arrow-icon { transition: transform 0.15s; }
+  .store-btn:hover .arrow-icon { transform: translateX(2px); }
+
+  /* Feature sections */
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease-out 0.25s both;
+  }
+
+  .feature {
+    background: var(--card);
+    border: 1px solid rgba(245,166,35,0.06);
+    border-radius: 20px;
+    padding: 28px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .feature:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245,166,35,0.15);
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: rgba(245,166,35,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .feature-text h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ottoman-cream);
+    margin-bottom: 4px;
+  }
+
+  .feature-text p {
+    color: var(--dim);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  /* Characters section */
+  .characters {
+    text-align: center;
+    margin-bottom: 56px;
+    animation: fadeUp 0.6s ease-out 0.35s both;
+  }
+
+  .characters h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ottoman-gold);
+    margin-bottom: 24px;
+  }
+
+  .character-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .character-card {
+    background: var(--card);
+    border: 1px solid rgba(245,166,35,0.08);
+    border-radius: 20px;
+    padding: 28px 24px;
+    flex: 1;
+    max-width: 280px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .character-card:hover { transform: translateY(-3px); }
+
+  .character-emoji {
+    font-size: 3rem;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .character-card h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ottoman-cream);
+    margin-bottom: 6px;
+  }
+
+  .character-card p {
+    color: var(--dim);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  /* Info section */
+  .info-section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease-out 0.4s both;
+  }
+
+  .info-section h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ottoman-gold);
+    margin-bottom: 16px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .info-item {
+    background: var(--card);
+    border: 1px solid rgba(245,166,35,0.06);
+    border-radius: 14px;
+    padding: 16px 18px;
+  }
+
+  .info-label {
+    color: var(--dim);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-family: 'Baloo 2', cursive;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ottoman-cream);
+  }
+
+  /* Legal links */
+  .legal {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease-out 0.5s both;
+  }
+
+  .legal a {
+    color: var(--dim);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(245,166,35,0.05);
+    transition: all 0.15s;
+  }
+
+  .legal a:hover {
+    color: var(--ottoman-gold);
+    background: rgba(245,166,35,0.12);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.8rem;
+    animation: fadeUp 0.6s ease-out 0.55s both;
+  }
+
+  .footer a {
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .footer a:hover { color: var(--ottoman-gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 540px) {
+    .hero h1 { font-size: 2rem; }
+    .feature { flex-direction: column; text-align: center; gap: 12px; }
+    .feature-icon { margin: 0 auto; }
+    .character-cards { flex-direction: column; align-items: center; }
+    .info-grid { grid-template-columns: 1fr; }
+    .container { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/" class="back"><span>←</span> All Apps</a>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-icon">🫧</div>
+    <h1>Blastic Bubbles</h1>
+    <div class="subtitle">The Grand Bazaar</div>
+    <p class="tagline">Pop colorful bubbles, unwrap hidden treasures, and help Baba renovate his dream house in this Ottoman-themed puzzle adventure set in Istanbul's Grand Bazaar.</p>
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/app/blastic-bubbles/idYOUR_APP_ID" target="_blank" class="store-btn ios">
+        🍎 App Store <span class="arrow-icon">↗</span>
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.hasanburakdumer.blasticbubbles" target="_blank" class="store-btn android">
+        ▶ Google Play <span class="arrow-icon">↗</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">🫧</div>
+      <div class="feature-text">
+        <h3>Pop & Chain</h3>
+        <p>Tap matching bubbles to pop chains. Bigger chains mean bigger rewards — and unlock powerful special pieces like the Ottoman Cannon and Fez Bomb.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎁</div>
+      <div class="feature-text">
+        <h3>Unwrap Hidden Items</h3>
+        <p>Every level hides a mystery item wrapped in bubble wrap. Pop bubbles to reveal it — from Turkish tea sets to ornate lamps and musical instruments.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🏠</div>
+      <div class="feature-text">
+        <h3>Renovate the Dream House</h3>
+        <p>Earn stars to upgrade Baba's family home room by room. Choose furniture, paint walls, and transform a fixer-upper into an Ottoman palace.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🧿</div>
+      <div class="feature-text">
+        <h3>Ottoman Special Pieces</h3>
+        <p>Create chain combos to spawn the Nazar Eye, Whirling Dervish, Sultan's Firework, and more. Combine specials for massive explosive chain reactions.</p>
+      </div>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🧩</div>
+      <div class="feature-text">
+        <h3>Strategic Obstacles</h3>
+        <p>Break through Turkish Ice, smash Ottoman Crates, unroll Kilim Curtains, and spread magical carpets across hundreds of hand-crafted levels.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Characters -->
+  <div class="characters">
+    <h2>Meet the Characters</h2>
+    <div class="character-cards">
+      <div class="character-card">
+        <span class="character-emoji">👨</span>
+        <h3>Baba</h3>
+        <p>A cheerful Ottoman shopkeeper with a magnificent mustache and a red Fez. He left the shop to watch "the match of the century" — now he needs your help to sort through the deliveries!</p>
+      </div>
+      <div class="character-card">
+        <span class="character-emoji">👶</span>
+        <h3>Baby</h3>
+        <p>Baba's adorable toddler with a tiny drawn-on mustache and an oversized Fez. Fearless, curious, and ready to pop every bubble in sight.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Info -->
+  <div class="info-section">
+    <h2>Game Info</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Developer</div>
+        <div class="info-value">Hasan Burak Dümer</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Category</div>
+        <div class="info-value">Puzzle / Casual</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Price</div>
+        <div class="info-value">Free (with In-App Purchases)</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Platforms</div>
+        <div class="info-value">iOS & Android</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Age Rating</div>
+        <div class="info-value">4+</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Languages</div>
+        <div class="info-value">English, Turkish</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legal links -->
+  <div class="legal">
+    <a href="/blasticbubbles/privacy-policy/">Privacy Policy</a>
+    <a href="/blasticbubbles/terms-of-use/">Terms of Use</a>
+    <a href="/blasticbubbles/support/">Support</a>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Hasan Burak Dümer · <a href="/">All Apps</a> · <a href="mailto:burakdumer22@hotmail.com">Contact</a></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CardMoji — Emoji Memory Card Game for iOS</title>
+<meta name="description" content="CardMoji is a fun, fast emoji memory card matching game. Flip cards, find pairs, chain combos, and race the clock across 8 levels. Free on the App Store.">
+<meta name="keywords" content="emoji game, memory game, card matching, brain game, puzzle game, flip cards, match pairs, brain training, iOS game">
+<meta property="og:title" content="CardMoji — Emoji Memory Card Game">
+<meta property="og:description" content="Flip cards, find emoji pairs, and race the clock. A fast, fun brain-training puzzle game.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burakdumer.com/cardmoji/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --card: #16213e;
+    --face: #0f3460;
+    --accent: #e94560;
+    --gold: #f5c518;
+    --mint: #53d8a8;
+    --purple: #9b59b6;
+    --text: #eaeaea;
+    --dim: #8899aa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 40%, rgba(233,69,96,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 25%, rgba(83,216,168,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 85%, rgba(155,89,182,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .page { position: relative; z-index: 1; }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 72px 24px 48px;
+    max-width: 640px;
+    margin: 0 auto;
+    animation: fadeUp 0.6s ease-out;
+  }
+
+  .hero-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .hero h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .hero .tagline {
+    font-size: 1.15rem;
+    color: var(--dim);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, var(--accent), #c0392b);
+    padding: 14px 40px;
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(233,69,96,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(233,69,96,0.45);
+  }
+
+  /* Emoji strip */
+  .emoji-strip {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 8px;
+    padding: 32px 24px;
+    opacity: 0.4;
+    animation: fadeUp 0.6s ease-out 0.15s both;
+  }
+
+  /* Features */
+  .features {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 24px 64px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    animation: fadeUp 0.6s ease-out 0.25s both;
+  }
+
+  .feature {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 18px;
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .feature-emoji {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .feature h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--gold);
+  }
+
+  .feature p {
+    font-size: 0.85rem;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+
+  /* How it works */
+  .how {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px 64px;
+    text-align: center;
+    animation: fadeUp 0.6s ease-out 0.35s both;
+  }
+
+  .how h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    color: var(--mint);
+  }
+
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .step {
+    flex: 1;
+    min-width: 140px;
+    max-width: 180px;
+  }
+
+  .step-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .step-text {
+    font-size: 0.88rem;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 24px 48px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--dim);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-links a:hover { color: var(--mint); }
+
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(136,153,170,0.5);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2.2rem; }
+    .hero { padding: 48px 20px 36px; }
+    .steps { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <section class="hero">
+    <div class="hero-icon">🧠</div>
+    <h1>CardMoji</h1>
+    <p class="tagline">Flip cards. Find emoji pairs. Race the clock.<br>A fast, fun memory game that's impossible to put down.</p>
+    <a href="https://apps.apple.com/app/cardmoji/id6759486567" class="cta-btn">Download Free on the App Store</a>
+  </section>
+
+  <div class="emoji-strip">🐶 🍕 🎯 🔥 💎 ⭐ 🦊 🍉</div>
+
+  <section class="features">
+    <div class="feature">
+      <div class="feature-emoji">🃏</div>
+      <h3>8 Levels</h3>
+      <p>From easy 4-pair warmups to brain-melting 20-pair challenges</p>
+    </div>
+    <div class="feature">
+      <div class="feature-emoji">🔥</div>
+      <h3>Combo Streaks</h3>
+      <p>Chain consecutive matches to multiply your score</p>
+    </div>
+    <div class="feature">
+      <div class="feature-emoji">⏱️</div>
+      <h3>Beat the Clock</h3>
+      <p>Every level has a countdown timer — stay sharp or lose</p>
+    </div>
+    <div class="feature">
+      <div class="feature-emoji">💡</div>
+      <h3>Hint System</h3>
+      <p>Stuck? Peek at all cards for one second to plan your next move</p>
+    </div>
+    <div class="feature">
+      <div class="feature-emoji">🏆</div>
+      <h3>High Scores</h3>
+      <p>Track your personal best and try to beat it every session</p>
+    </div>
+    <div class="feature">
+      <div class="feature-emoji">✨</div>
+      <h3>Polished Feel</h3>
+      <p>Smooth animations, haptic feedback, and satisfying sound effects</p>
+    </div>
+  </section>
+
+  <section class="how">
+    <h2>How to Play</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Tap a card to flip it and reveal the emoji</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Flip a second card — if they match, they stay!</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Match all pairs before time runs out</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://apps.apple.com/us/app/cardmoji/id6759486567">App Store</a>
+      <a href="/cardmoji/privacy-policy/">Privacy Policy</a>
+      <a href="/cardmoji/support/">Support</a>
+      <a href="/">All Apps</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Hasan Burak Dümer</div>
+  </footer>
+</div>
+
+</body>
+</html>

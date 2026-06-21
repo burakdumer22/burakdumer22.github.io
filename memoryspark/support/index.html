@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Memory Spark</title>
+<meta name="description" content="Support and FAQ for Memory Spark by Hasan Burak Dümer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --card: #16213e;
+    --violet: #8B5CF6;
+    --text: #eaeaea;
+    --dim: #8899aa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(139,92,246,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 70%, rgba(83,216,168,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--violet);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 32px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    background: rgba(139,92,246,0.08);
+    transition: background 0.15s;
+  }
+  .back:hover { background: rgba(139,92,246,0.18); }
+  .header {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease-out;
+  }
+  .header .icon { font-size: 2rem; margin-bottom: 12px; }
+  .header h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .header p {
+    color: var(--dim);
+    font-size: 0.9rem;
+  }
+  .content {
+    animation: fadeUp 0.6s ease-out 0.1s both;
+  }
+  .content h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--violet);
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+  .content h2:first-child { margin-top: 0; }
+  .content p, .content li {
+    color: var(--dim);
+    font-size: 0.92rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .content ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .content li { margin-bottom: 6px; }
+  .content a {
+    color: var(--violet);
+    text-decoration: none;
+  }
+  .content a:hover { text-decoration: underline; }
+  .faq-item {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .faq-item h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .faq-item p {
+    color: var(--dim);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+  .contact-card {
+    background: var(--card);
+    border: 1px solid rgba(139,92,246,0.15);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .contact-card .emoji { font-size: 2rem; margin-bottom: 12px; }
+  .contact-card h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .contact-card p {
+    color: var(--dim);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    background: var(--violet);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 12px 28px;
+    border-radius: 12px;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .contact-btn:hover {
+    background: #7c3aed;
+    transform: translateY(-2px);
+  }
+  .footer {
+    text-align: center;
+    margin-top: 64px;
+    color: var(--dim);
+    font-size: 0.8rem;
+  }
+  .footer a { color: var(--dim); text-decoration: none; }
+  .footer a:hover { color: var(--violet); }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 540px) {
+    .container { padding: 40px 16px 60px; }
+    .header h1 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/" class="back">← Back to Apps</a>
+
+  <div class="header">
+    <div class="icon">✦</div>
+    <h1>Support</h1>
+    <p>Memory Spark · Help & FAQ</p>
+  </div>
+
+  <div class="content">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h3>How does Memory Spark work?</h3>
+      <p>Memory Spark scans your photo library for images with people using on-device face detection. It randomly picks 10 photos, creates text descriptions of the scenes (never the faces), and sends those descriptions to an AI art generator to create a single artistic image blending all those moments together.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Are my photos uploaded anywhere?</h3>
+      <p>No. Your photos never leave your device. All face detection and photo scanning happens on-device. Only short text descriptions of scenes (like "a sunny beach setting with warm colors") are sent to the AI to generate the art prompt. Your actual photos are never uploaded or transmitted.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What's the difference between Surprise Me and Craft Your Own?</h3>
+      <p>Surprise Me is free — one tap, the app randomly picks photos and a style, and generates art. Craft Your Own lets you shuffle through photos, choose your preferred art style, and customize the generation. Craft Your Own is a Pro feature.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I save or share my generated image?</h3>
+      <p>After the image is generated, tap the Save or Share button. Free users can watch a short video to save with a small corner watermark, or upgrade to Pro for instant, watermark-free HD saves and shares.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I cancel my subscription?</h3>
+      <p><strong>iPhone/iPad:</strong> Open Settings → tap your name → Subscriptions → Memory Spark → Cancel Subscription.<br>
+      <strong>Android:</strong> Open Google Play Store → Menu → Subscriptions → Memory Spark → Cancel.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I restore my purchase on a new device?</h3>
+      <p>Open Memory Spark → Settings → Restore Purchases. Make sure you're signed in with the same Apple ID or Google account you used to purchase.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>The app says I have no photos with people. What do I do?</h3>
+      <p>Make sure you've granted Memory Spark access to your full photo library (not just selected photos). On iPhone, go to Settings → Memory Spark → Photos → change to "Full Access". The app needs to scan your library to detect faces.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Generation failed. What should I do?</h3>
+      <p>This usually means the AI service is temporarily busy. Try again in a few moments. If the problem persists, check your internet connection. If it continues, please contact us.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How do I delete all my data?</h3>
+      <p>Open Memory Spark → Settings → Delete All Data. This removes all generated images, preferences, and local data. Alternatively, uninstalling the app deletes everything.</p>
+    </div>
+
+    <div class="contact-card">
+      <div class="emoji">💬</div>
+      <h3>Still need help?</h3>
+      <p>Can't find what you're looking for? Send us an email and we'll get back to you as soon as possible.</p>
+      <a href="mailto:burakdumer22@hotmail.com?subject=Memory%20Spark%20Support" class="contact-btn">Email Support →</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Hasan Burak Dümer · <a href="/">Back to Apps</a> · <a href="/memoryspark/privacy-policy/">Privacy</a> · <a href="/memoryspark/terms/">Terms</a></p>
+  </div>
+</div>
+
+</body>
+</html>

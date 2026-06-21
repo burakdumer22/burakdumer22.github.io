@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitography — AI Fitness Coach for Beginners</title>
+<meta name="description" content="Fitography generates personalized workout plans that adapt every 2 weeks. AI-powered fitness coaching for people who don't know where to start.">
+<meta name="keywords" content="AI fitness, workout app, personal trainer, beginner workout, adaptive training, AI coach, exercise planner, fitness app">
+<meta property="og:title" content="Fitography — Your fitness story, written by AI.">
+<meta property="og:description" content="AI-generated workout plans that adapt to you every 2 weeks. Built for beginners.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://burakdumer.com/fitography/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0D0D0F;
+    --card: #1A1A1F;
+    --card-border: #2A2A2F;
+    --orange: #F26522;
+    --orange-glow: rgba(242,101,34,0.15);
+    --orange-dim: rgba(242,101,34,0.6);
+    --white: #F5F5F5;
+    --gray: #8E8E93;
+    --green: #4CAF50;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* NAV */
+  nav {
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-decoration: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray);
+    text-decoration: none;
+    margin-left: 24px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+
+  /* HERO */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--orange);
+    background: var(--orange-glow);
+    border: 1px solid rgba(242,101,34,0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    animation: fadeDown 0.6s ease-out;
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    letter-spacing: 2px;
+    line-height: 0.95;
+    margin-bottom: 20px;
+    animation: fadeDown 0.6s ease-out 0.1s both;
+  }
+  h1 span { color: var(--orange); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 460px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+    animation: fadeDown 0.6s ease-out 0.2s both;
+  }
+  .app-store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--white);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 14px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fadeDown 0.6s ease-out 0.3s both;
+  }
+  .app-store-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(242,101,34,0.25);
+  }
+  .app-store-btn svg { width: 22px; height: 22px; }
+
+  /* SECTION TITLES */
+  .section-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 0.92rem;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  /* HOW IT WORKS */
+  .how-section { padding: 60px 0; }
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .step:hover {
+    border-color: var(--orange-dim);
+    transform: translateX(4px);
+  }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--orange);
+    line-height: 1;
+    min-width: 36px;
+  }
+  .step-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* FEATURES */
+  .features-section { padding: 60px 0; }
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .feature-card {
+    padding: 28px 24px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+  .feature-card:hover {
+    border-color: var(--orange-dim);
+    transform: translateY(-3px);
+  }
+  .feature-icon {
+    font-size: 1.6rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .feature-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  .feature-desc {
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* PRICING */
+  .pricing-section {
+    padding: 60px 0;
+    text-align: center;
+  }
+  .pricing-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .price-card {
+    flex: 1;
+    max-width: 240px;
+    padding: 28px 24px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    text-align: center;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+  .price-card.best {
+    border-color: var(--orange);
+    box-shadow: 0 0 40px var(--orange-glow);
+  }
+  .price-card.best::after {
+    content: 'BEST VALUE';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--bg);
+    background: var(--orange);
+    padding: 3px 12px;
+    border-radius: 8px;
+  }
+  .price-label {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .price-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+  }
+  .price-period {
+    font-size: 0.78rem;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .price-save {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--green);
+    background: rgba(76,175,80,0.12);
+    padding: 3px 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+  }
+  .trial-note {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin-top: 24px;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 0 32px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 40px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .footer-brand .logo { font-size: 1.4rem; }
+  .footer-tagline {
+    font-size: 0.78rem;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .footer-links a {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--gray);
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-bottom {
+    font-size: 0.72rem;
+    color: rgba(142,142,147,0.4);
+    text-align: center;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .pricing-cards { flex-direction: column; align-items: center; }
+    .price-card { max-width: 100%; }
+    .footer-top { flex-direction: column; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <nav>
+    <a href="/fitography/" class="logo">FITOGRAPHY</a>
+    <div class="nav-links">
+      <a href="/fitography/privacy-policy/">Privacy</a>
+      <a href="/fitography/terms-of-use/">Terms</a>
+      <a href="/fitography/support/">Support</a>
+      <a href="/">All Apps</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">AI-Powered Fitness</div>
+    <h1>YOUR FITNESS STORY,<br><span>WRITTEN BY AI.</span></h1>
+    <p class="hero-sub">Personalized workout plans that adapt to you every 2 weeks. Built for people who want to get fit but don't know where to start.</p>
+    <a href="https://apps.apple.com/app/idYOUR_APP_ID" class="app-store-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download on the App Store
+    </a>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-tag">HOW IT WORKS</div>
+    <h2>Three steps. That's it.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div>
+          <div class="step-title">Tell us about you</div>
+          <div class="step-desc">60-second onboarding. Your goals, equipment, schedule, and any limitations. No fitness knowledge required.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div>
+          <div class="step-title">AI builds your plan</div>
+          <div class="step-desc">Our AI coach generates a personalized workout program tailored to your exact situation. Every exercise, set, and rep — planned for you.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div>
+          <div class="step-title">Train. Adapt. Repeat.</div>
+          <div class="step-desc">Every 2 weeks, the AI analyzes your progress and builds a smarter plan. It learns what works for you and evolves with you.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="section-tag">FEATURES</div>
+    <h2>Everything you need. Nothing you don't.</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🧠</span>
+        <div class="feature-title">Adaptive AI Plans</div>
+        <div class="feature-desc">Plans evolve every 14 days based on your actual performance, not generic templates.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏋️</span>
+        <div class="feature-title">Animated Demos</div>
+        <div class="feature-desc">Exercise demonstrations so you know exactly what to do, even as a complete beginner.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <div class="feature-title">Progress Tracking</div>
+        <div class="feature-desc">Streaks, stats, charts, and body measurements. See your story unfold.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <div class="feature-title">Tap-Tap-Done Logging</div>
+        <div class="feature-desc">Every field pre-filled by AI. Just tap to confirm. No typing required.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔄</span>
+        <div class="feature-title">Biweekly Evolution</div>
+        <div class="feature-desc">New plan every 2 weeks that accounts for what you crushed and what needs adjustment.</div>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🌍</span>
+        <div class="feature-title">English & Turkish</div>
+        <div class="feature-desc">Full bilingual support including AI-generated plans in your preferred language.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section">
+    <div class="section-tag">PRICING</div>
+    <h2>Start free. Train smarter.</h2>
+    <p class="section-desc">3-day free trial on all plans. Cancel anytime.</p>
+    <div class="pricing-cards">
+      <div class="price-card">
+        <div class="price-label">Monthly</div>
+        <div class="price-amount">$9.99</div>
+        <div class="price-period">per month</div>
+      </div>
+      <div class="price-card best">
+        <div class="price-label">Yearly</div>
+        <div class="price-amount">$59.99</div>
+        <div class="price-period">per year</div>
+        <div class="price-save">SAVE 50%</div>
+      </div>
+    </div>
+    <p class="trial-note">3-day free trial included. No charge until trial ends.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/fitography/" class="logo">FITOGRAPHY</a>
+        <div class="footer-tagline">Your fitness story, written by AI.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/fitography/privacy-policy/">Privacy Policy</a>
+        <a href="/fitography/terms-of-use/">Terms of Use</a>
+        <a href="/fitography/support/">Support</a>
+        <a href="/">All Apps</a>
+        <a href="mailto:burakdumer22@hotmail.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Hasan Burak Dümer. All rights reserved.</div>
+  </footer>
+</div>
+
+</body>
+</html>

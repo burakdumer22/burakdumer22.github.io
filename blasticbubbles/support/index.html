@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Blastic Bubbles: The Grand Bazaar</title>
+<meta name="description" content="Get help with Blastic Bubbles: The Grand Bazaar. FAQs, troubleshooting, and contact support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0a06;
+    --surface: #1a1008;
+    --card: #1e1510;
+    --ottoman-gold: #F5A623;
+    --ottoman-cream: #F5E6C8;
+    --ottoman-red: #C0392B;
+    --green: #4CAF50;
+    --text: #ddd5c8;
+    --dim: #a0917a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(245,166,35,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    transition: color 0.15s;
+  }
+  .back:hover { color: var(--ottoman-gold); }
+  h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--ottoman-gold);
+    margin-bottom: 6px;
+  }
+  .app-name {
+    color: var(--dim);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ottoman-cream);
+    margin: 32px 0 16px;
+  }
+  p, li {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  a { color: var(--ottoman-gold); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Contact card */
+  .contact-card {
+    background: var(--card);
+    border: 1px solid rgba(245,166,35,0.1);
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  .contact-card .icon { font-size: 2rem; margin-bottom: 12px; }
+  .contact-card p { color: var(--dim); margin-bottom: 16px; }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 24px;
+    border-radius: 10px;
+    background: rgba(245,166,35,0.12);
+    color: var(--ottoman-gold);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .contact-btn:hover {
+    background: rgba(245,166,35,0.22);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  /* FAQ */
+  .faq-item {
+    background: var(--card);
+    border: 1px solid rgba(245,166,35,0.06);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s;
+  }
+  .faq-item:hover { border-color: rgba(245,166,35,0.15); }
+  .faq-q {
+    font-family: 'Baloo 2', cursive;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ottoman-cream);
+    margin-bottom: 8px;
+  }
+  .faq-a {
+    color: var(--dim);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 56px;
+    color: var(--dim);
+    font-size: 0.8rem;
+  }
+  @media (max-width: 540px) {
+    h1 { font-size: 1.5rem; }
+    .container { padding: 32px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="/blasticbubbles/" class="back"><span>←</span> Blastic Bubbles</a>
+
+  <h1>Support</h1>
+  <div class="app-name">Blastic Bubbles: The Grand Bazaar</div>
+
+  <!-- Contact -->
+  <div class="contact-card">
+    <div class="icon">💬</div>
+    <p>Having trouble with the game? Found a bug? We'd love to help.</p>
+    <a href="mailto:burakdumer22@hotmail.com?subject=Blastic%20Bubbles%20Support" class="contact-btn">📧 Email Support</a>
+  </div>
+
+  <!-- FAQ -->
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I remove ads?</div>
+    <div class="faq-a">Go to the in-game Shop and purchase "Remove Ads" for $2.99. This permanently removes interstitial ads (the ads that appear between levels). Rewarded ads — the ones you choose to watch for extra moves or power-ups — remain available as an optional bonus.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">I purchased "Remove Ads" but ads are still showing. What do I do?</div>
+    <div class="faq-a">Try restoring your purchase: go to the Shop screen and tap "Restore Purchases." If ads still appear, please restart the app. If the issue persists, contact us with your purchase receipt and we'll help resolve it.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I save my progress?</div>
+    <div class="faq-a">Your game progress is automatically saved to your device. If you uninstall the app, your progress will be lost. We're working on adding cloud save in a future update.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What are special pieces and how do I create them?</div>
+    <div class="faq-a">Special pieces are created by making large chains of same-color bubbles. A chain of 5 in a straight line creates an Ottoman Cannon (clears a row or column). An L-shaped or T-shaped chain of 5+ creates a Fez Bomb (clears a 3×3 area). A chain of 7+ creates a Nazar Eye (clears all of one color). Combine two special pieces for even more powerful effects!</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What do the power-ups do?</div>
+    <div class="faq-a">There are 4 power-ups available during gameplay: the Hammer (pops any single bubble), Shuffle (rearranges the board), Color Bomb (removes all bubbles of one color), and Hourglass (adds 5 extra moves). Power-ups don't cost a move to use. You can earn them through gameplay, daily rewards, or purchase them with coins.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What are stars for?</div>
+    <div class="faq-a">Stars are earned by completing levels. You can earn 1, 2, or 3 stars per level depending on your score. Stars are used to renovate Baba's dream house — upgrade the living room, kitchen, bedroom, and more!</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">I'm stuck on a level. Any tips?</div>
+    <div class="faq-a">Focus on making bigger chains (5+) to create special pieces — they're much more powerful than small chains. Look for L-shaped and T-shaped patterns to create Fez Bombs. Save your power-ups for the toughest moments. And don't forget you can watch a rewarded ad for 5 extra moves when you run out!</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is the game free?</div>
+    <div class="faq-a">Yes! Blastic Bubbles is free to download and play. The game contains ads and optional in-app purchases (Remove Ads, coin packs). You can enjoy the full game without spending anything.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">What devices are supported?</div>
+    <div class="faq-a">Blastic Bubbles is available on iOS (iPhone and iPad) and Android devices. Requires iOS 15.0 or later, or Android 7.0 or later.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I report a bug?</div>
+    <div class="faq-a">Please email us at <a href="mailto:burakdumer22@hotmail.com?subject=Blastic%20Bubbles%20Bug%20Report">burakdumer22@hotmail.com</a> with a description of the issue, your device model, and OS version. Screenshots are very helpful!</div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2026 Hasan Burak Dümer · <a href="/blasticbubbles/">Blastic Bubbles</a> · <a href="/blasticbubbles/privacy-policy/">Privacy</a> · <a href="/blasticbubbles/terms-of-use/">Terms</a> · <a href="/">All Apps</a></p>
+  </div>
+</div>
+</body>
+</html>

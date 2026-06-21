@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CardMoji — Support</title>
+<meta name="description" content="Get help with CardMoji, the emoji memory card matching game for iOS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1a2e;
+    --card: #16213e;
+    --accent: #e94560;
+    --gold: #f5c518;
+    --mint: #53d8a8;
+    --text: #eaeaea;
+    --dim: #8899aa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .back {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--mint);
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: color 0.15s;
+  }
+
+  .back:hover { color: var(--gold); }
+
+  h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .intro {
+    font-size: 0.95rem;
+    color: var(--dim);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 32px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--dim);
+    margin-bottom: 12px;
+  }
+
+  a { color: var(--mint); text-decoration: none; }
+  a:hover { color: var(--gold); }
+
+  .faq-item {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+
+  .faq-q {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .faq-a {
+    font-size: 0.85rem;
+    color: var(--dim);
+    line-height: 1.6;
+  }
+
+  .contact-box {
+    background: var(--card);
+    border: 1px solid rgba(83,216,168,0.15);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .contact-box .emoji { font-size: 2rem; margin-bottom: 8px; }
+
+  .contact-box p {
+    color: var(--dim);
+    margin-bottom: 16px;
+  }
+
+  .contact-btn {
+    display: inline-block;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, var(--accent), #c0392b);
+    padding: 12px 32px;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(233,69,96,0.3);
+    transition: transform 0.15s;
+  }
+
+  .contact-btn:hover { transform: translateY(-2px); color: white; }
+
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    text-align: center;
+    font-size: 0.75rem;
+    color: rgba(136,153,170,0.4);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <a href="/cardmoji/" class="back">← Back to CardMoji</a>
+
+  <h1>Support</h1>
+  <p class="intro">Need help with CardMoji? Check the FAQs below or reach out directly.</p>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I use a hint?</div>
+    <div class="faq-a">Tap the 💡 button during gameplay. Free users watch a short video to earn a hint; ad-free users get unlimited hints. The hint briefly reveals all unmatched cards for one second.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">I purchased "Remove Ads" but ads still show. What do I do?</div>
+    <div class="faq-a">Try closing and reopening the app. If the issue persists, go to Settings (gear icon) and tap "Restore Purchases." This will re-sync your purchase. If it still doesn't work, contact us below.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does the combo system work?</div>
+    <div class="faq-a">When you match pairs consecutively without a mismatch, your combo streak increases. Each consecutive match earns bonus points. One wrong flip resets the streak to zero.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Can I replay earlier levels?</div>
+    <div class="faq-a">The game progresses through levels 1–8 in order. After completing level 8 or running out of time, you start fresh from level 1. Your best score is always saved.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do I request a refund?</div>
+    <div class="faq-a">All purchases are processed through Apple. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank">reportaproblem.apple.com</a> and follow Apple's refund process.</div>
+  </div>
+
+  <div class="contact-box">
+    <div class="emoji">💬</div>
+    <p>Didn't find your answer? We'd love to hear from you.</p>
+    <a href="mailto:burakdumer22@hotmail.com?subject=CardMoji%20Support" class="contact-btn">Email Us</a>
+  </div>
+
+  <div class="footer">&copy; 2025 Hasan Burak Dümer</div>
+</div>
+
+</body>
+</html>
